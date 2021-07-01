@@ -1,5 +1,6 @@
 class AnimalsController < ApplicationController
     def index
-        render plain: "We are in the index route!"
+        animals = Animal.all
+        render json: animals
     end
 end
