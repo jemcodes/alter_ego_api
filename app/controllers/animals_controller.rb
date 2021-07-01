@@ -1,17 +1,22 @@
 class AnimalsController < ApplicationController
+    before_action :load_animal, only: [:show, :destroy]
+
     def index
-        animals = Animal.all
-        render json: animals
+        render json: Animal.all
     end
 
     def show
-        animal = Animal.find(params[:id])
-        render json: animal
+        render json: @animal
     end
 
     def destroy
-        animal = Animal.find(params[:id])
-        animal.destroy
-        render json: animal
+        @animal.destroy
+        render json: @animal
+    end
+
+    private
+
+    def load_animal
+        @animal = Animal.find(params[:id])
     end
 end
