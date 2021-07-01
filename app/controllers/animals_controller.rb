@@ -19,8 +19,11 @@ class AnimalsController < ApplicationController
     end
 
     def update
-        @animal.update(animal_params)
-        render json: @animal
+        if @animal.update(animal_params)
+            render json: @animal
+        else
+            render json: @animal.errors, status: :unprocessable_entity
+        end
     end
 
     def destroy
