@@ -1,5 +1,5 @@
 class AnimalsController < ApplicationController
-    before_action :load_animal, only: [:show, :destroy]
+    before_action :load_animal, only: [:show, :update, :destroy]
 
     def index
         render json: Animal.all
@@ -12,6 +12,11 @@ class AnimalsController < ApplicationController
     def create
         @animal = Animal.new(animal_params)
         @animal.save
+        render json: @animal
+    end
+
+    def update
+        @animal.update(animal_params)
         render json: @animal
     end
 
